@@ -1,0 +1,7 @@
+{
+    "client_id": "client_id",
+    "client_secret": "client_secret",
+    "redirect_uri": "redirect_uri",
+    "bot_token": "bot_token",
+    "sudo_list": [123456789]
+}
