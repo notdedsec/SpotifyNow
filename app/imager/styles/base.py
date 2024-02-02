@@ -67,8 +67,8 @@ class Style:
 
 
     def truncate(self, text: str, font: ImageFont.FreeTypeFont, limit: int) -> str:
-        truncated = font.getsize(text)[0] > limit
-        while font.getsize(text)[0] > limit:
+        truncated = font.getlength(text) > limit
+        while font.getlength(text) > limit:
             text = text[:-1]
         return f'{text.strip()}..' if truncated else text
 
