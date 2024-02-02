@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "spotifynow"
+version = "0.1.0"
+description = ""
+authors = ["notdedsec <notdedsec@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.89.1"
+uvicorn = "^0.20.0"
+requests = "^2.28.2"
+sqlmodel = "^0.0.8"
+spotipy = "^2.22.0"
+aiogram = "^2.24"
+windows-curses = "^2.3.1"
+colorthief = "^0.2.1"
+python-dotenv = "^1.0.0"
+cachecore = "^0.4.0"
+fonttools = "^4.39.3"
+colour = "^0.1.5"
+pillow = "^10.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

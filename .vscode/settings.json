@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "python.formatting.provider": "autopep8",
+    "python.analysis.typeCheckingMode": "basic"
+}
