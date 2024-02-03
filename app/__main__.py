@@ -1,4 +1,4 @@
 import uvicorn
 
 
-uvicorn.run('app.main:app')
+uvicorn.run('app.api.main:app')

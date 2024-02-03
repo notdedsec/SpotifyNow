@@ -2,15 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: FastAPI",
-            "type": "python",
+            "name": "SpotifyNow",
+            "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
-            "args": [
-                "app.main:app",
-                "--port",
-                "8000"
-            ],
+            "args": ["app.api.main:app", "--port", "8000"],
             "jinja": true
         }
     ]
