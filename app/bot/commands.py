@@ -4,11 +4,11 @@ from aiogram.types import BotCommand, BotCommandScopeAllPrivateChats
 commands = [
     BotCommand(
         command='start',
-        description=''
+        description='hello world!'
     ),
     BotCommand(
         command='help',
-        description=''
+        description='get some help!'
     )
 ]
 

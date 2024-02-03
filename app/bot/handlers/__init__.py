@@ -19,8 +19,8 @@ def register_handlers(dp: Dispatcher):
     )
 
     dp.register_message_handler(
-        admin.send_YEET,
-        commands=['yeet'],
+        admin.send_TODO,
+        commands=['todo'],
         chat_type=ChatType.PRIVATE
     )
 
