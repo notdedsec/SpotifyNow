@@ -1,5 +1,7 @@
 *.css
 *.db
+test.py
+TODO.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
