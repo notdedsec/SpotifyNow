@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.config import config
 from app.api.routes import router
-from app.database.main import initialize_db
-from app.bot.main import initialize_bot, bot_info
 
 
-app = FastAPI(title=f'{bot_info.full_name} API')
+app = FastAPI(title=f'{config.BOT_USERNAME} Authentication Server')
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,12 +14,5 @@ app.add_middleware(
     allow_headers=['*'],
     allow_credentials=True
 )
-
-
-@app.on_event('startup')
-def on_startup():
-    initialize_db()
-    initialize_bot()
-
 
 app.include_router(router)
