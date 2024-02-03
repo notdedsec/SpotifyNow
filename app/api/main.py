@@ -1,6 +1,9 @@
+import asyncio
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.bot.main import main
 from app.config import config
 from app.api.routes import router
 
@@ -16,3 +19,8 @@ app.add_middleware(
 )
 
 app.include_router(router)
+
+
+@app.on_event('startup')
+async def startup_event():
+    asyncio.create_task(main())
