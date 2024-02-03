@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-async def main():
+async def run():
     bot = Bot(config.BOT_TOKEN)
     await bot.set_my_commands(commands, scope)
 

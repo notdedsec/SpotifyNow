@@ -3,7 +3,7 @@ import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.bot.main import main
+from app.bot.main import run
 from app.config import config
 from app.api.routes import router
 
@@ -23,4 +23,4 @@ app.include_router(router)
 
 @app.on_event('startup')
 async def startup_event():
-    asyncio.create_task(main())
+    asyncio.create_task(run())
