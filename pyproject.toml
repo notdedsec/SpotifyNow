@@ -20,6 +20,7 @@ cachecore = "^0.4.0"
 fonttools = "^4.39.3"
 colour = "^0.1.5"
 pillow = "^10.2.0"
+importlib-metadata = "^7.0.1"
 
 
 [build-system]
