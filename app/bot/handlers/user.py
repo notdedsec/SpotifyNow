@@ -16,7 +16,7 @@ def valid_user(func):
         if not user.fetch():
             await message.answer('User not found in the database')
             return
-        return await func(message, user, *args, **kwargs)
+        return await func(message, *args, **kwargs)
     return wrapper
 
 
@@ -55,9 +55,11 @@ async def unlink_user(message: Message):
 
 
 @valid_user
-async def update_user_name(message: Message, name: str):
-    if name: # TODO regex check
+async def update_user_name(message: Message):
+    name = message.get_args()
+    if not name or '@' in name: # TODO regex check
         await message.answer(f'Special characters and emojis are not allowed')
+        return
 
     user = SpotifyNowUser(message.from_id)
     user.update({'name': name})
@@ -67,9 +69,11 @@ async def update_user_name(message: Message, name: str):
 
 
 @valid_user
-async def update_user_style(message: Message, style: str):
-    if not valid(style, styles):
+async def update_user_style(message: Message):
+    style = message.get_args()
+    if not style or not valid(style, styles):
         await message.answer(f'Unsupported style: *{style}*')
+        return
 
     user = SpotifyNowUser(message.from_id)
     user.update({'style': style})
@@ -79,9 +83,11 @@ async def update_user_style(message: Message, style: str):
 
 
 @valid_user
-async def update_user_color(message: Message, color: str):
-    if not valid(color, colors):
+async def update_user_color(message: Message):
+    color = message.get_args()
+    if not color or not valid(color, colors):
         await message.answer(f'Unsupported color: *{color}*')
+        return
 
     user = SpotifyNowUser(message.from_id)
     user.update({'color': color})
@@ -91,9 +97,11 @@ async def update_user_color(message: Message, color: str):
 
 
 @valid_user
-async def update_user_accent(message: Message, accent: str):
-    if not valid(accent, accents):
+async def update_user_accent(message: Message):
+    accent = message.get_args()
+    if not accent or not valid(accent, accents):
         await message.answer(f'Unsupported accent: *{accent}*')
+        return
 
     user = SpotifyNowUser(message.from_id)
     user.update({'accent': accent})
@@ -114,9 +122,12 @@ async def send_now_playing(message: Message):
 
     track = spotify_user.now_playing()
     if not track:
-        return # nothing/ads
+        await message.answer(
+            f'You are not listening to anything on Spotify at the moment.'
+        )
+        return
 
-    style = styles[user.style](user.color, user.accent)
+    style = styles[user.style](colors[user.color], accents[user.accent])
     image = style.now(track, user)
 
     markup = button_markup('Play on Spotify', track.url)
