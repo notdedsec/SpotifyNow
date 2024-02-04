@@ -10,7 +10,9 @@ async def send_help(message: Message):
     )
 
 
-async def send_start(message: Message, param: Optional[str] = None):
+async def send_start(message: Message):
+    param = message.get_args()
+
     if not param:
         await message.answer(
             'send welcome message'
