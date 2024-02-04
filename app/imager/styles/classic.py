@@ -31,8 +31,8 @@ class Classic(Style):
         image.text((184, 174), f'by {self.truncate(track.artist, font_info, 348)}', fill=(186, 253, 209), font=font_info)
         image.text((184, 207), f'on {self.truncate(track.album, font_info, 348)}', fill=(186, 253, 209), font=font_info)
 
-        image.rectangle((568, 251) + (185, 254), (70, 190, 120))
-        image.rectangle((185+(track.position/track.duration*383), 251) + (185, 254), (180, 240, 200))
+        image.rectangle((185, 251, 568, 254), (70, 190, 120))
+        image.rectangle((185, 251, 185 + int(track.position / track.duration * 383), 254), (180, 240, 200))
         image.text((185, 258), self.get_timestamp(track.position), fill=(186, 253, 209), font=font_time)
         image.text((534, 258), self.get_timestamp(track.duration), fill=(186, 253, 209), font=font_time)
 
