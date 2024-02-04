@@ -6,7 +6,7 @@ from app.imager.styles.base import Style
 styles = {x.__name__:x for x in Style.__subclasses__()}
 
 colors = {
-    'Auto': None, # ?
+    'Auto': Color('#1ed760'), # TODO handle this in the style
     'Classic': Color('#1ed760'),
     'Red': Color('red'),
     'Blue': Color('blue'),
