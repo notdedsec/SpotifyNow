@@ -121,7 +121,7 @@ class SpotifyNowUser():
             'artist': ', '.join([x['name'] for x in item['artists']]) if song else item['show']['publisher'],
             'duration': item['duration_ms'],
             'position': response.get('progress_ms', 0),
-            'pic': item['album']['images'][0]['url'] if song else item['images'][0]['url'],
+            'artwork': item['album']['images'][0]['url'] if song else item['images'][0]['url'],
             'url': item['href'],
             'raw': response
         })
