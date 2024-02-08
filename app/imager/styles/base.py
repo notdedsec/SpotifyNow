@@ -13,9 +13,9 @@ from app.models import Stats, Track, User
 
 class Style:
 
-    def __init__(self, color: str, accent: str):
-        self.color = ImageColor.getcolor(color, 'RGBA')
-        self.accent = ImageColor.getcolor(accent, 'RGBA')
+    def __init__(self, color: Color, accent: Color):
+        self.color = color
+        self.accent = accent
 
         self.size = (600, 300)
 
@@ -26,13 +26,11 @@ class Style:
 
     def create_frame(self, size: Optional[Tuple[int, int]] = None, color: Optional[Tuple] = None) -> Image.Image:
         size = size or self.size
-        color = color or self.color
+        color = color or tuple(int(x * 255) for x in self.color.rgb)
         image = Image.new('RGBA', size, color) # type: ignore
         return image
 
 
-    # how do i load telegram pfp?
-    # what about default pfp? 'https://i.imgur.com/dzddC5q.jpeg'
     def load_image(self, image_url: str, resize: Optional[Tuple[int, int]] = None) -> Image.Image:
         response = requests.get(image_url)
         if not response.ok:
@@ -75,12 +73,13 @@ class Style:
 
     def get_timestamp(self, time_ms: int) -> str:
         delta = timedelta(milliseconds=time_ms)
-        timestamp = delta.__str__()[2:7].lstrip('0')
+        timestamp = str(delta)[2:7]
         return timestamp
 
 
     def finalize_frame(self, image: Image.Image) -> BytesIO:
         now = BytesIO()
+        image = image.convert('RGB')
         image.save(now, 'JPEG', quality=200)
         now.seek(0)
         return now
