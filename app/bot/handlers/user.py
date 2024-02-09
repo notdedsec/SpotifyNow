@@ -6,6 +6,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from app.imager.main import accents, colors, styles
 from app.spotify.user import SpotifyNowUser
+from app.config import config
+from app.bot.helpers import get_avatar
 
 
 # TODO make a validation.py and put color, accent, style validation funcs in there
@@ -121,6 +123,8 @@ async def send_now_playing(message: Message):
     track = spotify_user.now_playing()
     if not track:
         return await message.answer(f'You are not listening to anything on Spotify at the moment.')
+
+    user.avatar = await get_avatar(message, user.avatar)
 
     style = styles[user.style](colors[user.color], accents[user.accent])
     image = style.now(track, user)

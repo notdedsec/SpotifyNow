@@ -3,6 +3,8 @@ from typing import Dict
 from pydantic import BaseModel
 from sqlmodel import JSON, Column, Field, SQLModel
 
+from app.config import config
+
 
 class User(SQLModel, table=True):
     id: int = Field(primary_key=True)
@@ -10,6 +12,7 @@ class User(SQLModel, table=True):
     style: str = Field(default='Classic')
     color: str = Field(default='Auto')
     accent: str = Field(default='Auto')
+    avatar: str = Field(default=config.DEFAULT_AVATAR)
     token: Dict[str, str] = Field(default={}, sa_column=Column(JSON))
 
 
