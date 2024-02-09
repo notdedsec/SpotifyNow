@@ -16,7 +16,8 @@ async def link_user(message: Message):
     url = user.get_auth_url()
     markup = button_markup('Authorize', url)
     await message.answer(
-        'Tap the button below to link your Spotify account. This will allow me to show what you are listening to on Spotify.',
+        'Tap the button below to link your Spotify account. '
+        'This will allow me to show what you are listening to on Spotify.',
         reply_markup=markup
     )
 
@@ -26,7 +27,8 @@ async def unlink_user(message: Message):
     user = SpotifyNowUser(message.from_id)
     user.unlink()
     await message.answer(
-        'Your account has been unlinked.'
+        'You have been unlinked from my database. '
+        'You can revoke the authorization from the [Apps Overview](https://www.spotify.com/us/account/apps/) section.'
     )
 
 

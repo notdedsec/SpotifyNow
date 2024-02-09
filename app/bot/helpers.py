@@ -12,7 +12,7 @@ def valid_user(func):
     async def wrapper(message: Message, *args, **kwargs):
         user = SpotifyNowUser(message.from_id)
         if not user.fetch():
-            return await message.answer('You have not linked your Spotify account yet.')
+            return await message.answer('You need to /link your Spotify account with me first.')
         return await func(message, *args, **kwargs)
     return wrapper
 

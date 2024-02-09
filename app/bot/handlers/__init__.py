@@ -19,12 +19,6 @@ def register_handlers(dp: Dispatcher):
     )
 
     dp.register_message_handler(
-        admin.send_TODO,
-        commands=['todo'],
-        chat_type=ChatType.PRIVATE
-    )
-
-    dp.register_message_handler(
         user.link_user,
         commands=['link', 'relink'],
         chat_type=ChatType.PRIVATE
