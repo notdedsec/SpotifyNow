@@ -57,6 +57,11 @@ def register_handlers(dp: Dispatcher):
     )
 
     dp.register_message_handler(
+        user.update_user_avatar,
+        commands=['avatar']
+    )
+
+    dp.register_message_handler(
         user.send_now_playing,
         commands=['now']
     )

@@ -111,6 +111,23 @@ async def update_user_accent(message: Message):
 
 
 @valid_user
+async def update_user_avatar(message: Message):
+    args = message.get_args()
+    if args and 'auto' in args.lower():
+        avatar = config.DEFAULT_AVATAR
+    elif not message.reply_to_message or not message.reply_to_message.photo:
+        return await message.answer(f'Please reply to an image with the /avatar command.')
+    else:
+        avatar = message.reply_to_message.photo[-1].file_id
+
+    user = SpotifyNowUser(message.from_id)
+    user.update({'avatar': avatar})
+    await message.answer(
+        f'Avatar successfully updated.'
+    )
+
+
+@valid_user
 async def send_now_playing(message: Message):
     spotify_user = SpotifyNowUser(message.from_id)
 
