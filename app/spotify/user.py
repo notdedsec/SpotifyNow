@@ -1,4 +1,5 @@
 import logging
+from copy import deepcopy
 from typing import Dict, Optional, Tuple
 from uuid import uuid4
 
@@ -103,7 +104,7 @@ class SpotifyNowUser():
         if not user:
             return
         self.user = user
-        return user
+        return deepcopy(user)
 
 
     def now_playing(self) -> Optional[Track]:
